@@ -1,29 +1,39 @@
-import org.hamcrest.Matchers;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collection;
-import java.util.List;
 
 public class Cart extends LineItem {
+
+    ArrayList<LineItem> lineItemsList = new ArrayList<>();
 
     public Cart() {
     }
 
-    public Cart(String item, double price) {
-        super(item, price);
-    }
-
-    public Cart(String item, double price, int unit) {
-        super(item, price, unit);
-    }
-
     public double totalPrice() {
-        return 0;
+        double result = 0;
+        if(getLineItems() == null)
+        {
+            result = 0d;
+        }
+        else {
+            for (LineItem item : getLineItems()) {
+                if(item.unit > 0) {
+                    // 3Parameter
+                    double cal = item.price * item.unit;
+                    result += cal;
+                }
+                else {
+                    // 2 Parameter
+                    result += item.price;
+                }
+            }
+        }
+
+        return result;
     }
 
+    @Override
     public ArrayList<LineItem> getLineItems() {
-        return new ArrayList<LineItem>();
+        return lineItemsList;
     }
 }

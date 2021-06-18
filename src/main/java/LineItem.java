@@ -1,4 +1,8 @@
-public class LineItem {
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.ArrayList;
+
+public  class LineItem {
     public String item;
     public double price;
     public int unit;
@@ -15,5 +19,9 @@ public class LineItem {
         this.item = item;
         this.price = price;
         this.unit = unit;
+    }
+
+    public ArrayList<LineItem> getLineItems() {
+        return new ArrayList<LineItem>();
     }
 }
