@@ -13,18 +13,19 @@ public class Cart extends LineItem {
         double result = 0;
         if(getLineItems() == null)
         {
+            // Test case one.
             result = 0d;
         }
         else {
             for (LineItem item : getLineItems()) {
-                if(item.unit > 0) {
-                    // 3Parameter
-                    double cal = item.price * item.unit;
-                    result += cal;
+                if(item.unit == 0) {
+                    // 2 Parameter for test case two.
+                    result += item.price;
                 }
                 else {
-                    // 2 Parameter
-                    result += item.price;
+                    // 3 Parameter for test case three.
+                    double cal = item.price * item.unit;
+                    result += cal;
                 }
             }
         }
